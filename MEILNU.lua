@@ -33,7 +33,6 @@ end
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
 end ---ifok
 os.execute('lua MEILNU.lua') 
-end 
 if not DevRio:get(Server.."TokenMEILNU") then 
 io.write('\27[1;35m\nالان قم بارسال توكن البوت -› ⤈\n\27[0;33;49m') 
 local TokenBot = io.read() 
