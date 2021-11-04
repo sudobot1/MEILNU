@@ -21,33 +21,33 @@ Port    = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"
 UpTime  = io.popen([[uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}']]):read('*a'):gsub('[\n\r]+', '')
 --     MEILNU     --
 local AutoSet = function() 
-if not DevAbs:get(Server.."Idvenom") then 
+if not DevAbs:get(Server.."IdMEILNU") then 
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
 if tostring(DevId):match('%d+') then 
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
-DevAbs:set(Server.."Idvenom",DevId) 
+DevAbs:set(Server.."IdMEILNU",DevId) 
 else 
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
 end 
 os.execute('lua MEILNU.lua') 
 end 
-if not DevRio:get(Server.."TokenTrox") then 
-io.write('\27[1;35m\nالان قم بارسال توكن البوت ↫ ⤈\n\27[0;33;49m') 
+if not DevAbs:get(Server.."TokenMEILNU") then 
+io.write('\27[1;35m\nالان قم بارسال توكن البوت -› ⤈\n\27[0;33;49m') 
 local TokenBot = io.read() 
 if TokenBot ~= '' then 
 local url , res = https.request('https://api.telegram.org/bot'..TokenBot..'/getMe') 
 if res ~= 200 then 
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nالتوكن غير صحيح تاكد منه ثم ارسله\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
+print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nالتوكن غير صحيح تاكد منه ثم ارسله\n━─━─━─ ⌔ ─━─━─━') 
 else 
 io.write('\27[1;36mتم حفظ توكن البوت بنجاح\n27[0;39;49m') 
-DevRio:set(Server.."TokenTrox",TokenBot) 
+DevAbs:set(Server.."TokenMEILNU",TokenBot) 
 end  
 else 
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nلم يتم حفظ توكن البوت ارسله مره اخرى\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
+print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ توكن البوت ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
 end  
 os.execute('lua MEILNU.lua') 
-end
+end 
 local Create = function(data, file, uglify)  
 file = io.open(file, "w+")   
 local serialized   
