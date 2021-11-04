@@ -19,7 +19,7 @@ Ip      = io.popen("dig +short myip.opendns.com @resolver1.opendns.com"):read('*
 Name    = io.popen("uname -a | awk '{ name = $2 } END { print name }'"):read('*a'):gsub('[\n\r]+', '')
 Port    = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"):read('*a'):gsub('[\n\r]+', '')
 UpTime  = io.popen([[uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}']]):read('*a'):gsub('[\n\r]+', '')
---     MEILNU     --
+--     Source MEILNU     --
 local AutoSet = function() 
 if not DevAbs:get(Server.."من ") then 
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
@@ -120,23 +120,15 @@ end
 Load_MEILNU() 
 print("\27[36m"..[[ 
 Source MEILNU
-
-___________                    
-\__    ___/______  _______  ___
-  |    |  \_  __ \/  _ \  \/  /
-  |    |   |  | \(  <_> >    < 
-  |____|   |__|   \____/__/\_ \
-                             \/
-
-]]..'\27[m'.."\n\27[35mServer Information ↬ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\27[m\n\27[36m~ \27[mUser \27[36m: \27[10;32m"..User.."\27[m\n\27[36m~ \27[mIp \27[36m: \27[10;32m"..Ip.."\27[m\n\27[36m~ \27[mName \27[36m: \27[10;32m"..Name.."\27[m\n\27[36m~ \27[mPort \27[36m: \27[10;32m"..Port.."\27[m\n\27[36m~ \27[mUpTime \27[36m: \27[10;32m"..UpTime.."\27[m\n\27[35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\27[m")
+]]..'\27[m'.."\n\27[35mServer Information ↬ ⤈ \n━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉\27[m\n\27[36m~ \27[mUser \27[36m: \27[10;32m"..User.."\27[m\n\27[36m~ \27[mIp \27[36m: \27[10;32m"..Ip.."\27[m\n\27[36m~ \27[mName \27[36m: \27[10;32m"..Name.."\27[m\n\27[36m~ \27[mPort \27[36m: \27[10;32m"..Port.."\27[m\n\27[36m~ \27[mUpTime \27[36m: \27[10;32m"..UpTime.."\27[m\n\27[35m━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉\27[m")
 Config = dofile("./config.lua")
 DevId = Config.DevId
 SudoIds = {Config.SudoIds,1342680269}
-Trox = Config.Trox
+MEILNU = Config.MEILNU
 TokenBot = Config.TokenBot
-NameBot = (DevRio:get(Trox..'Rio:NameBot') or 'ميلانو')
---     MEILNU     --
-FilesPrint = "\27[35m".."\nAll Source Files Started ↬ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"..'\27[m'
+NameBot = (DevAbs:get(MEILNU..'Abs:NameBot') or 'فينوم')
+--     Source MEILNU     --
+FilesPrint = "\27[35m".."\nAll Source Files Started ↬ ⤈ \n━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉\n"..'\27[m'
 FilesNumber = 0
 for v in io.popen('ls Files'):lines() do
 if v:match(".lua$") then
@@ -144,7 +136,7 @@ FilesNumber = FilesNumber + 1
 FilesPrint = FilesPrint.."\27[39m"..FilesNumber.."\27[36m".."~ : \27[10;32m"..v.."\27[m \n"
 end
 end
-FilesPrint = FilesPrint.."\27[35m".."┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n".."\27[m"
+FilesPrint = FilesPrint.."\27[35m".."━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉\n".."\27[m"
 if FilesNumber ~= 0 then
 print(FilesPrint)
 end
@@ -5357,7 +5349,7 @@ name = string.gsub(name,'🍇','🍇')
 name = string.gsub(name,'🍓','🍓')
 name = string.gsub(name,'🍈','🍈')
 name = string.gsub(name,'🍒','🍒')
-name = string.gsub(name,'🍑','🍑')
+name = string.gsub(name,'🍑','??')
 name = string.gsub(name,'🍍','🍍')
 name = string.gsub(name,'🥥','🥥')
 name = string.gsub(name,'🥝','🥝')
