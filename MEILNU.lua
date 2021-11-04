@@ -24,12 +24,15 @@ local AutoSet = function()
 if not DevRio:get(Server.."ldMEILNU") then 
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
-if tostring(DevId):match('%d+') then 
+if tostring(DevId):match('%d+') then
+os.execute('lua MEILNU.lua') 
+end
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
 DevRio:set(Server.."IdMEILNU",DevId) 
-else 
+end
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
-end 
+end ---ifok
+else 
 os.execute('lua MEILNU.lua') 
 end 
 if not DevRio:get(Server.."TokenMEILNU") then 
