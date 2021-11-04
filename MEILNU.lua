@@ -106,7 +106,6 @@ io.popen("mkdir Files")
 os.execute('chmod +x Run;./Run')
 end 
 CreateConfigAuto()
-end
 local Load_MEILNU = function() 
 local f = io.open("./config.lua", "r") 
 if not f then 
