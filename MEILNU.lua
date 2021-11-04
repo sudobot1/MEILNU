@@ -21,21 +21,16 @@ Port    = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"
 UpTime  = io.popen([[uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}']]):read('*a'):gsub('[\n\r]+', '')
 --     MEILNU     --
 local AutoSet = function() 
-if not DevRio:get(Server.."IdTrox") then 
-io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي ↫ ⤈\n\27[0;33;49m') 
+if not DevAbs:get(Server.."Idvenom") then 
+io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
 if tostring(DevId):match('%d+') then 
-os.execute('lua MEILNU.lua') 
-end ---ifBn
-if Abs.Result.Info == 'Ok' then
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
-DevRio:set(Server.."IdTrox",DevId) 
-end ---ifok
+DevAbs:set(Server.."Idvenom",DevId) 
 else 
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
-end
+print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
+end 
 os.execute('lua MEILNU.lua') 
-end
 end 
 if not DevRio:get(Server.."TokenTrox") then 
 io.write('\27[1;35m\nالان قم بارسال توكن البوت ↫ ⤈\n\27[0;33;49m') 
