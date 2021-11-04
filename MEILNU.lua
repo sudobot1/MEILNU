@@ -25,7 +25,8 @@ if not DevRio:get(Server.."ldMEILNU") then
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
 if tostring(DevId):match('%d+') then
-io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
+end
+io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m')
 DevRio:set(Server.."IdMEILNU",DevId) 
 end
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
