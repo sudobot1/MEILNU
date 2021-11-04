@@ -32,7 +32,6 @@ DevRio:set(Server.."IdMEILNU",DevId)
 end
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
 end ---ifok
-else 
 os.execute('lua MEILNU.lua') 
 end 
 if not DevRio:get(Server.."TokenMEILNU") then 
