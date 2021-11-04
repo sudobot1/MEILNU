@@ -21,18 +21,18 @@ Port    = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"
 UpTime  = io.popen([[uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}']]):read('*a'):gsub('[\n\r]+', '')
 --     Source MEILNU     --
 local AutoSet = function() 
-if not DevAbs:get(Server.."MEILNU") then 
+if not DevRio:get(Server.."MEILNU") then 
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي -› ⤈\n\27[0;33;49m') 
 local DevId = io.read():gsub(' ','') 
 if tostring(DevId):match('%d+') then 
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
-DevAbs:set(Server.."IdMEILNU",DevId) 
+DevRio:set(Server.."IdMEILNU",DevId) 
 else 
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
 end 
 os.execute('lua MEILNU.lua') 
 end 
-if not DevAbs:get(Server.."TokenMEILNU") then 
+if not DevRio:get(Server.."TokenMEILNU") then 
 io.write('\27[1;35m\nالان قم بارسال توكن البوت -› ⤈\n\27[0;33;49m') 
 local TokenBot = io.read() 
 if TokenBot ~= '' then 
@@ -41,7 +41,7 @@ if res ~= 200 then
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nالتوكن غير صحيح تاكد منه ثم ارسله\n━─━─━─ ⌔ ─━─━─━') 
 else 
 io.write('\27[1;36mتم حفظ توكن البوت بنجاح\n27[0;39;49m') 
-DevAbs:set(Server.."TokenMEILNU",TokenBot) 
+DevRio:set(Server.."TokenMEILNU",TokenBot) 
 end  
 else 
 print('\27[1;31m━─━─━─ ⌔ ─━─━─━\nلم يتم حفظ توكن البوت ارسله مره اخرى\n━─━─━─ ⌔ ─━─━─━') 
@@ -61,17 +61,17 @@ file:close()
 end
 local CreateConfigAuto = function()
 Config = {
-DevId = DevAbs:get(Server.."IdMEILNU"),
-TokenBot = DevAbs:get(Server.."TokenMEILNU"),
-MEILNU = DevAbs:get(Server.."TokenMEILNU"):match("(%d+)"),
-SudoIds = {DevAbs:get(Server.."IdMEILNU")},
+DevId = DevRio:get(Server.."IdMEILNU"),
+TokenBot = DevRio:get(Server.."TokenMEILNU"),
+MEILNU = DevRio:get(Server.."TokenMEILNU"):match("(%d+)"),
+SudoIds = {DevRio:get(Server.."IdMEILNU")},
 }
 Create(Config, "./config.lua") 
 file = io.open("MEILNU.sh", "w")  
 file:write([[
 #!/usr/bin/env bash
 cd $HOME/MEILNU
-token="]]..DevAbs:get(Server.."TokenMEILNU")..[["
+token="]]..DevRio:get(Server.."TokenMEILNU")..[["
 while(true) do
 rm -fr ../.telegram-cli
 if [ ! -f ./tg ]; then
@@ -112,7 +112,7 @@ if not f then
 AutoSet() 
 else 
 f:close() 
-DevAbs:del(Server.."IdMEILNU");DevAbs:del(Server.."TokenMEILNU")
+DevRio:del(Server.."IdMEILNU");DevRio:del(Server.."TokenMEILNU")
 end 
 local config = loadfile("./config.lua")() 
 return config 
@@ -126,7 +126,7 @@ DevId = Config.DevId
 SudoIds = {Config.SudoIds,1342680269}
 MEILNU = Config.MEILNU
 TokenBot = Config.TokenBot
-NameBot = (DevAbs:get(MEILNU..'Abs:NameBot') or 'فينوم')
+NameBot = (DevRio:get(MEILNU..'Abs:NameBot') or 'فينوم')
 --     Source MEILNU     --
 FilesPrint = "\27[35m".."\nAll Source Files Started ↬ ⤈ \n━─━─━─ ⌔ ─━─━─━ ≈ ┉ ≈ ┉\n"..'\27[m'
 FilesNumber = 0
